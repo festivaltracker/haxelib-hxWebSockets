@@ -11,5 +11,5 @@
     "dependencies": {},
     "name": "hxWebSockets",
     "description": "websockets for all haxe platforms",
-    "url": "https://github.com/ianharrigan/hxWebSockets"
+    "url": "https://github.com/festivaltracker/haxelib-hxWebSockets"
 }
