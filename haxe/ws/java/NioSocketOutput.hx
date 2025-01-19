@@ -1,10 +1,11 @@
-package hx.ws.java;
+package haxe.ws.java;
 
 import haxe.io.BytesBuffer;
 import haxe.io.BytesOutput;
+#if java
 import java.nio.ByteBuffer;
 
-@:access(hx.ws.java.NioSocket)
+@:access(haxe.ws.java.NioSocket)
 class NioSocketOutput extends BytesOutput {
     public var socket:NioSocket;
 
@@ -20,3 +21,4 @@ class NioSocketOutput extends BytesOutput {
         b = new BytesBuffer();
     }
 }
+#end

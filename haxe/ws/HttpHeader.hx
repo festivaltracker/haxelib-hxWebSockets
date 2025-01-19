@@ -1,4 +1,4 @@
-package hx.ws;
+package haxe.ws;
 
 class HttpHeader {
     public static inline var SEC_WEBSOCKET_KEY:String = "Sec-WebSocket-Key";

@@ -1,4 +1,4 @@
-package hx.ws;
+package haxe.ws;
 
 import haxe.io.Bytes;
 

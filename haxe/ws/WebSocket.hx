@@ -1,6 +1,6 @@
-package hx.ws;
+package haxe.ws;
 
-import hx.ws.Types;
+import haxe.ws.Types;
 
 #if js
 
@@ -373,7 +373,7 @@ class WebSocket extends WebSocketCommon {
         var secKey = httpResponse.headers.get(HttpHeader.SEC_WEBSOSCKET_ACCEPT);
         
         if(secKey == null) {
-            trace("This server does not implement Sec-WebSocket-Key.");
+            //trace("This server does not implement Sec-WebSocket-Key."); //No one cares
         } else {
             if (secKey != makeWSKeyResponse(_encodedKey)) {
                 if (onerror != null) {

@@ -1,4 +1,4 @@
-package hx.ws;
+package haxe.ws;
 
 class Handler extends WebSocketCommon {
     public var validateHandshake:(HttpRequest, HttpResponse, (HttpResponse) -> Void) -> Void = null;

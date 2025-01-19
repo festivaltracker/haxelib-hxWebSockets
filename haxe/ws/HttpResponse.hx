@@ -1,4 +1,4 @@
-package hx.ws;
+package haxe.ws;
 
 class HttpResponse {
     public var httpVersion:String = "HTTP/1.1";

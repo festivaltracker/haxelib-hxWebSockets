@@ -1,16 +1,16 @@
-package hx.ws;
+package haxe.ws;
 
 #if java
 
-typedef SocketImpl = hx.ws.java.NioSocket;
+typedef SocketImpl = haxe.ws.java.NioSocket;
 
 #elseif cs
 
-typedef SocketImpl = hx.ws.cs.NonBlockingSocket;
+typedef SocketImpl = haxe.ws.cs.NonBlockingSocket;
 
 #elseif nodejs
 
-typedef SocketImpl = hx.ws.nodejs.NodeSocket;
+typedef SocketImpl = haxe.ws.nodejs.NodeSocket;
 
 #else
 

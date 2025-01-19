@@ -1,5 +1,5 @@
-package hx.ws;
-import hx.ws.uuid.Uuid;
+package haxe.ws;
+import haxe.ws.uuid.Uuid;
 
 class Util {
     public static function generateUUID():String {

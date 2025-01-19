@@ -1,9 +1,10 @@
-package hx.ws.nodejs;
+package haxe.ws.nodejs;
 
 import haxe.io.Bytes;
+#if js
 import js.node.Buffer;
 
-@:access(hx.ws.nodejs.NodeSocket)
+@:access(haxe.ws.nodejs.NodeSocket)
 class NodeSocketOutput {
     private var _socket:NodeSocket;
     
@@ -26,3 +27,4 @@ class NodeSocketOutput {
         _buffer = null;
     }
 }
+#end

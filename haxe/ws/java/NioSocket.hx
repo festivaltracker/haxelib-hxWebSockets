@@ -1,5 +1,6 @@
-package hx.ws.java;
+package haxe.ws.java;
 
+#if java
 import java.NativeArray;
 import java.lang.System;
 import java.net.InetSocketAddress;
@@ -186,3 +187,4 @@ class NioSocket {
         return ret;
     }
 }
+#end

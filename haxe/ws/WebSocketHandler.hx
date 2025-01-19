@@ -1,4 +1,4 @@
-package hx.ws;
+package haxe.ws;
 
 class WebSocketHandler extends Handler {
     public static var MAX_WAIT_TIME:Int = 1000; // if no handshake has happened after this time (in seconds), we'll consider it dead and disconnect

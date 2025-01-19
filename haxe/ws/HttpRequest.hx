@@ -1,4 +1,4 @@
-package hx.ws;
+package haxe.ws;
 
 class HttpRequest {
     public var method:String = null;

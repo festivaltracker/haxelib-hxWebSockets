@@ -1,11 +1,11 @@
-package hx.ws;
+package haxe.ws;
 
 class Log {
     public static inline var INFO:Int =  0x000001;
     public static inline var DEBUG:Int = 0x000010;
     public static inline var DATA:Int =  0x000100;
 
-    public static var mask:Int = 0;
+    public static var mask:Int = #if WSDEBUG INFO | DEBUG | DATA #else 0 #end;
 
     #if sys
     public static var logFn:Dynamic->Void = Sys.println;

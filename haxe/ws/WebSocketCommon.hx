@@ -1,11 +1,11 @@
-package hx.ws;
+package haxe.ws;
 
-import hx.ws.Types.MessageType;
+import haxe.ws.Types.MessageType;
 import haxe.crypto.Base64;
 import haxe.crypto.Sha1;
 import haxe.io.Bytes;
 import haxe.io.Error;
-import hx.ws.Util;
+import haxe.ws.Util;
 
 class WebSocketCommon {
     public var id:String;
@@ -19,7 +19,7 @@ class WebSocketCommon {
     private var _lastError:Dynamic = null;
 
     public var onopen:Void->Void;
-    public var onclose:Void->Void;
+    public var onclose:Dynamic->Dynamic->Void;
     public var onerror:Dynamic->Void;
     public var onmessage:MessageType->Void;
 
@@ -142,8 +142,18 @@ class WebSocketCommon {
         }
     }
 
-    public function close() {
+    public function close(dontRecurse:Bool = false) {
         if (state != State.Closed) {
+            var code = 1000;
+            var message = "No message specified";
+
+            try {
+                var b1 = _payload.readByte();
+                var b2 = _payload.readByte();
+                code = (b1<<8) + (b2);
+                message = _payload.readAllAvailableBytes().toString();
+            } catch (e) { message = 'Cannot get the close message: ${e.toString()}'; }
+
             try {
                 Log.debug("Closed", id);
                 sendFrame(Bytes.alloc(0), OpCode.Close);
@@ -152,7 +162,8 @@ class WebSocketCommon {
             } catch (e:Dynamic) { }
 
             if (onclose != null) {
-                onclose();
+                // avoid repeating a reconnection like a million times
+                if (!dontRecurse) onclose(code, message);
             }
         }
     }
@@ -272,6 +283,21 @@ class WebSocketCommon {
 
         if (needClose == true) { // dont want to send the Close frame here
             if (state != State.Closed) {
+                var code = 1000;
+                var message = 'No message received';
+                try {
+                    // these bytes seem to be 2 header bytes
+                    _buffer.readByte();
+                    _buffer.readByte();
+                    // the actual code bytes
+                    var b1 = _buffer.readByte();
+                    var b2 = _buffer.readByte();
+                    code = (b1<<8) + (b2);
+                    message = _buffer.readAllAvailableBytes().toString();
+                } catch (e:Dynamic) {
+                    message = 'No buffer to retrieve from: $e';
+                }
+                
                 try {
                     Log.debug("Closed", id);
                     state = State.Closed;
@@ -279,7 +305,7 @@ class WebSocketCommon {
                 } catch (e:Dynamic) { }
 
                 if (onclose != null) {
-                    onclose();
+                    onclose(code, message);
                 }
             }
         }

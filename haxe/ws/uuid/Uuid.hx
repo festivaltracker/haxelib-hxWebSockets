@@ -1,4 +1,4 @@
-package hx.ws.uuid;
+package haxe.ws.uuid;
 
 // copied as is from https://raw.githubusercontent.com/flashultra/uuid/master/src/uuid/Uuid.hx
 // not added as a dep to reduce complexity
